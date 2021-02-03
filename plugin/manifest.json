@@ -1,0 +1,29 @@
+{
+  "manifest_version": 1,
+  "version": 1,
+  "type": "APP",
+  "name": {
+    "ja": "年齢自動計算プラグイン",
+    "en": "age auto calculation"
+  },
+  "description": {
+    "ja": "日付フィールドと年齢フィールドを紐づけ、日付フィールドが変更されたタイミングで年齢を自動計算します。",
+    "en": "_"
+  },
+  "icon": "image/icon.png",
+  "homepage_url": {
+    "ja": "https://localbias.work/",
+    "en": "https://localbias.work/"
+   },
+  "desktop": {
+    "js": ["js/desktop.js"],
+    "css": ["https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap"]
+  },
+  "config": {
+    "html": "html/config.html",
+    "js": ["js/config.js"],
+    "css": ["https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap"],
+
+    "required_params": []
+  }
+}
