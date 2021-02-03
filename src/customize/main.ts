@@ -1,6 +1,5 @@
 import { getConfig } from '../utils/pluginUtil';
-import { Config } from '../utils/absolutes';
-import { PLUGIN_NAME } from '../utils/absolutes';
+import { PLUGIN_NAME, Config } from '../utils/absolutes';
 
 const EVENTS_SHOW = [
   'app.record.index.edit.show',
