@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { render } from 'react-dom';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 
-import { fields } from '../utils/kintoneApi/form';
 import * as plugin from '../utils/pluginUtil';
 import { wrapPromise } from '../utils/ReactUtil';
 
@@ -30,12 +30,13 @@ export default (pluginId: string) => {
 
 const getDateFields = async () => {
 
-  const properties = await fields.get({ app: kintone.app.getId() });
+  const client = new KintoneRestAPIClient();
+  const { properties } = await client.app.getFormFields({ app: String(kintone.app.getId()) });
 
   const dateFields = [];
   const inputFields = [];
 
-  for (const key of Object.keys(properties)) {
+  for (const key in properties) {
 
     if (properties[key].type === 'DATE') {
       dateFields.push(properties[key]);

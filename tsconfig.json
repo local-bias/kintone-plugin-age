@@ -17,6 +17,7 @@
   },
   "files": [
     "./node_modules/@kintone/dts-gen/kintone.d.ts",
+    "./src/types/index.ts",
   ],
   "include": [
     "src/**/*.ts",

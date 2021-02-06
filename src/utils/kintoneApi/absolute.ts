@@ -1,1 +1,0 @@
-export const END_POINT = '/k/v1';

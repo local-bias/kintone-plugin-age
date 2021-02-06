@@ -1,19 +1,17 @@
 import { getConfig } from '../utils/pluginUtil';
 import { PLUGIN_NAME, Config } from '../utils/absolutes';
 
-const EVENTS_SHOW = [
+const EVENTS_SHOW: EventType[] = [
   'app.record.index.edit.show',
   'app.record.create.show',
   'app.record.edit.show',
-  'mobile.app.record.index.edit.show',
   'mobile.app.record.create.show',
   'mobile.app.record.edit.show',
 ];
-const EVENTS_SUBMIT = [
+const EVENTS_SUBMIT: EventType[] = [
   'app.record.index.edit.submit',
   'app.record.create.submit',
   'app.record.edit.submit',
-  'mobile.app.record.index.edit.submit',
   'mobile.app.record.create.submit',
   'mobile.app.record.edit.submit',
 ];
