@@ -1,7 +1,7 @@
 
 export function wrapPromise<T>(promise: Promise<T>) {
   let status = "pending";
-  let result: T | Promise<T>;
+  let result: T;
   let suspender = promise.then(
     r => {
       status = "success";
@@ -13,7 +13,7 @@ export function wrapPromise<T>(promise: Promise<T>) {
     }
   );
   return {
-    read(): T | Promise<T> | void {
+    read(): T | void {
       if (status === "pending") {
         throw suspender;
       } else if (status === "error") {

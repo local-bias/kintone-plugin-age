@@ -44,8 +44,8 @@ module.exports = {
   },
 
   entry: {
-    desktop: './src/customize/index.js',
-    config: './src/config/index.js'
+    desktop: './src/customize/index.ts',
+    config: './src/config/index.ts'
   },
   output: {
     path: path.resolve(__dirname, 'plugin', 'js'),

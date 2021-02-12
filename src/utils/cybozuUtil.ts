@@ -8,11 +8,11 @@ interface Field {
   type: string;
 }
 
-export const getFields = () => {
+export const getFields = (): Field[] => {
 
   const schema = cybozu.data.page.SCHEMA_DATA || cybozu.data.page.FORM_DATA.schema;
 
-  return <Field[]>Object.values(schema.table.fieldList);
+  return Object.values(schema.table.fieldList);
 }
 
 export const getFieldMap = () => {

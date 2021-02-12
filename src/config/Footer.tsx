@@ -7,6 +7,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 
 import * as plugin from '../utils/pluginUtil';
+import { Config } from '../utils/absolutes';
 
 const useStyles = makeStyles((theme: Theme) => ({
   button: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default (props: any) => {
+export default (props: { config: Config }) => {
 
   const classes = useStyles();
 

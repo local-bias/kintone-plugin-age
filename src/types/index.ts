@@ -1,3 +1,14 @@
+interface Config {
+  rows: Row[];
+}
+
+interface Row {
+  src: string;
+  dst: string;
+  updates: boolean;
+}
+
+
 type NestedPartial<T> = T extends object
   ? {
     [K in keyof T]?: NestedPartial<T[K]>;

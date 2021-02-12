@@ -1,9 +1,6 @@
-/**
- * プラグインに保持しているパラメータを返却します.
- *
- * @return {Object} プラグインに保持しているパラメータ
- */
-export const getConfig = (id: string) => {
+import { Config } from './absolutes';
+
+export const getConfig = (id: string): Config => {
 
   const config = kintone.plugin.app.getConfig(id);
 
@@ -16,21 +13,13 @@ export const getConfig = (id: string) => {
   }, {});
 }
 
-/**
- * プラグインに保持させるパラメータを設定します
- *
- * @param {Object} params プラグインに保持させるパラメータ
- */
 export const setConfig = (target: any) => {
 
-  // 引数のプロパティをJSON形式に変換し、格納し直します
-  const config = Object.keys(target).reduce((accu: any, key) => {
+  const config: { [x: string]: any } = {};
 
-    accu[key] = JSON.stringify(target[key]);
-
-    return accu;
-
-  }, {});
+  for (const key in target) {
+    config[key] = JSON.stringify(target[key]);
+  }
 
   kintone.plugin.app.setConfig(config);
 }

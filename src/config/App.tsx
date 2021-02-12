@@ -17,7 +17,7 @@ import Footer from './Footer';
 import { Config, Row } from '../utils/absolutes';
 
 interface Props {
-  config: any;
+  config: Config;
   fieldProperties: { read(): Promise<any> | void; };
   setConfig: () => any;
 }
@@ -60,15 +60,15 @@ export default (props: any) => {
     setConfig({ ...config });
   }
 
-  const handleSrcChange = (e: any, index: number) => {
+  const handleSrcChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     config.rows[index].src = e.target.value;
     setConfig({ ...config });
   }
-  const handleDstChange = (e: any, index: number) => {
+  const handleDstChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     config.rows[index].dst = e.target.value;
     setConfig({ ...config });
   }
-  const handleUpdateChange = (e: any, index: number) => {
+  const handleUpdateChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     config.rows[index].updates = e.target.checked;
     setConfig({ ...config });
   }
@@ -83,7 +83,7 @@ export default (props: any) => {
               className={classes.textInput}
               label="年齢の算出元"
               value={input.src}
-              onChange={(e) => handleSrcChange(e, index)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSrcChange(e, index)}
               variant="outlined"
             >
               {fields.dateFields.map((field: any) => (
@@ -98,7 +98,7 @@ export default (props: any) => {
               className={classes.textInput}
               label="自動入力するフィールド"
               value={input.dst}
-              onChange={(e) => handleDstChange(e, index)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleDstChange(e, index)}
               variant="outlined"
             >
               {fields.inputFields.map((field: any) => (
