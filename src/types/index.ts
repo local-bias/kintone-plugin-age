@@ -8,11 +8,10 @@ interface Row {
   updates: boolean;
 }
 
-
 type NestedPartial<T> = T extends object
   ? {
-    [K in keyof T]?: NestedPartial<T[K]>;
-  }
+      [K in keyof T]?: NestedPartial<T[K]>;
+    }
   : T;
 
 type EventType =

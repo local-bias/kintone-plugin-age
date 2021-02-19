@@ -17,7 +17,6 @@ const EVENTS_SUBMIT: EventType[] = [
 ];
 
 export default (pluginId: string) => {
-
   let storage: any = {};
 
   const config: Config = getConfig(pluginId);
@@ -26,7 +25,7 @@ export default (pluginId: string) => {
     return;
   }
 
-  kintone.events.on(EVENTS_SHOW, e => {
+  kintone.events.on(EVENTS_SHOW, (e) => {
     try {
       storage = {};
 
@@ -34,7 +33,6 @@ export default (pluginId: string) => {
         storage[row.src] = e.record[row.src].value;
         e.record[row.dst].disabled = true;
       }
-
     } catch (error) {
       e.error = `プラグイン「${PLUGIN_NAME}」の処理実行時にエラーが発生しました`;
       console.error(`エラー(${PLUGIN_NAME})`, error);
@@ -42,16 +40,14 @@ export default (pluginId: string) => {
     return e;
   });
 
-  kintone.events.on(EVENTS_SUBMIT, e => {
+  kintone.events.on(EVENTS_SUBMIT, (e) => {
     try {
-
       for (const row of config.rows) {
         if (row.updates || e.record[row.src].value !== storage[row.src]) {
-
           const src = e.record[row.src].value;
 
           if (!src) {
-            e.record[row.dst].value = "";
+            e.record[row.dst].value = '';
             continue;
           }
 
@@ -60,17 +56,15 @@ export default (pluginId: string) => {
           e.record[row.dst].value = isFinite(age) ? age : NaN;
         }
       }
-
     } catch (error) {
       e.error = `プラグイン「${PLUGIN_NAME}」の処理実行時にエラーが発生しました`;
       console.error(`エラー(${PLUGIN_NAME})`, error);
     }
     return e;
   });
-}
+};
 
 const getAge = (birthday: Date) => {
-
   const y = birthday.getFullYear();
   const m = birthday.getMonth();
   const d = birthday.getDate();
@@ -84,4 +78,4 @@ const getAge = (birthday: Date) => {
   const passes = nowM > m || (nowM === m && nowD >= d);
 
   return passes ? yDifference : yDifference - 1;
-}
+};

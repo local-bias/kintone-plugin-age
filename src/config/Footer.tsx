@@ -1,7 +1,5 @@
-import * as React from 'react'
-import {
-  Button
-} from '@material-ui/core';
+import * as React from 'react';
+import { Button } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import SaveIcon from '@material-ui/icons/Save';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
@@ -16,20 +14,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default (props: { config: Config }) => {
-
   const classes = useStyles();
 
   const onClickSave = (e: any) => {
-
     plugin.setConfig(props.config);
-  }
+  };
 
   return (
     <div>
       <Button
         className={classes.button}
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         onClick={onClickSave}
         startIcon={<SaveIcon />}
       >
@@ -37,12 +33,12 @@ export default (props: { config: Config }) => {
       </Button>
       <Button
         className={classes.button}
-        variant="contained"
+        variant='contained'
         onClick={() => history.back()}
         startIcon={<SettingsBackupRestoreIcon />}
       >
         変更しないで戻る
       </Button>
     </div>
-  )
-}
+  );
+};
