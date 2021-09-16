@@ -19,18 +19,20 @@ const action: kintone.Action = async (event, pluginId) => {
     const { src, dst, updates } = config.rows[i];
     const initialValue = window.AGE_PLUGIN.initialValues[i];
 
+    if (!updates && (!!initialValue || !!event.record[dst].value)) {
+      continue;
+    }
+
     const currentValue = event.record[src].value;
 
-    if (updates || currentValue !== initialValue) {
-      if (!currentValue) {
-        event.record[dst].value = '';
-        continue;
-      }
-
-      const age = getAge(new Date(currentValue));
-
-      event.record[dst].value = isFinite(age) ? age : NaN;
+    if (!currentValue) {
+      event.record[dst].value = '';
+      continue;
     }
+
+    const age = getAge(new Date(currentValue));
+
+    event.record[dst].value = isFinite(age) ? age : NaN;
   }
 
   return event;
