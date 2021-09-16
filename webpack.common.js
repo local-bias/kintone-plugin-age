@@ -10,9 +10,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-typescript']
-          }
-        }
+            presets: ['@babel/preset-typescript'],
+          },
+        },
       },
       {
         test: /.tsx?$/,
@@ -20,9 +20,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/react', '@babel/preset-typescript']
-          }
-        }
+            presets: ['@babel/react', '@babel/preset-typescript'],
+          },
+        },
       },
       {
         test: /\.jsx?$/,
@@ -32,30 +32,28 @@ module.exports = {
           options: {
             presets: ['@babel/preset-react', '@babel/preset-env'],
             plugins: ['@babel/plugin-transform-runtime'],
-          }
-        }
+          },
+        },
       },
     ],
   },
   resolve: {
-    extensions: [
-      '.ts', '.tsx', '.js', '.jsx', 'json',
-    ],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', 'json'],
   },
 
   entry: {
-    desktop: './src/customize/index.ts',
-    config: './src/config/index.ts'
+    desktop: './src/desktop/index.ts',
+    config: './src/config/index.ts',
   },
   output: {
     path: path.resolve(__dirname, 'plugin', 'js'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   plugins: [
     new KintonePlugin({
       manifestJSONPath: './plugin/manifest.json',
       privateKeyPath: './private.ppk',
-      pluginZipPath: './dist/plugin.zip'
-    })
-  ]
+      pluginZipPath: './dist/plugin.zip',
+    }),
+  ],
 };
