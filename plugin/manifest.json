@@ -12,8 +12,8 @@
   },
   "icon": "image/icon.png",
   "homepage_url": {
-    "ja": "https://localbias.work/",
-    "en": "https://localbias.work/"
+    "ja": "https://ribbit.work/",
+    "en": "https://ribbit.work/"
   },
   "desktop": {
     "js": ["js/desktop.js", "https://cdn.jsdelivr.net/gh/local-bias/kintone-cdn/dist/desktop.js"],
