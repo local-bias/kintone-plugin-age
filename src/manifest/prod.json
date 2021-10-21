@@ -1,0 +1,11 @@
+{
+  "desktop": {
+    "js": ["https://cdn.jsdelivr.net/gh/local-bias/kintone-plugin-age@latest/cdn/desktop.js"]
+  },
+  "mobile": {
+    "js": ["https://cdn.jsdelivr.net/gh/local-bias/kintone-plugin-age@latest/cdn/desktop.js"]
+  },
+  "config": {
+    "js": ["https://cdn.jsdelivr.net/gh/local-bias/kintone-plugin-age@latest/cdn/config.js"]
+  }
+}
