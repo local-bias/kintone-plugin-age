@@ -19,7 +19,11 @@ const action: kintone.Action = async (event, pluginId) => {
     const { src, dst, updates } = config.rows[i];
     const initialValue = window.AGE_PLUGIN.initialValues[i];
 
-    if (!updates && (!!initialValue || !!event.record[dst].value)) {
+    if (
+      !event.type.includes('record.create') &&
+      !updates &&
+      (initialValue || event.record[dst].value)
+    ) {
       continue;
     }
 
