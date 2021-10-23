@@ -1,4 +1,5 @@
 import { PLUGIN_NAME } from '@common/statics';
+import { pushPluginName } from '@common/local-storage';
 
 /**
  * イベント実行に必要なプロパティ情報
@@ -19,7 +20,9 @@ class Launcher {
    */
   public constructor(pluginId: string) {
     this._pluginId = pluginId;
-    this.pushLocalStorage();
+    try {
+      pushPluginName();
+    } catch (error) {}
   }
 
   /**
@@ -52,17 +55,6 @@ class Launcher {
       kintone.events.on([...desktopEvents, ...mobileEvents], handler);
     }
   };
-
-  private pushLocalStorage() {
-    const key = 'ribbit-kintone-plugin';
-    const stored = localStorage.getItem(key);
-    const local = stored ? JSON.parse(stored) : {};
-    local.pluginNames = local.pluginNames || [];
-    if (!local.pluginNames.includes(PLUGIN_NAME)) {
-      local.pluginNames.push(PLUGIN_NAME);
-    }
-    localStorage.setItem(key, JSON.stringify(local));
-  }
 }
 
 export default Launcher;
