@@ -9,6 +9,4 @@
 <a href="#license"><img src="https://img.shields.io/github/license/local-bias/kintone-plugin-age?style=flat-square"></a>
 </p>
 
-# 年齢自動計算プラグイン
-
 - 日付フィールドと年齢フィールドを紐づけ、日付フィールドが変更されたタイミングで年齢を自動計算します。
