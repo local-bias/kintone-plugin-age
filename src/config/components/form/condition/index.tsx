@@ -1,6 +1,6 @@
 import React, { useState, VFC, VFCX } from 'react';
 import styled from '@emotion/styled';
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary } from '@material-ui/core';
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary } from '@mui/material';
 
 import ConditionForm from './condition-form';
 import ConditionDeletionButton from '../condition-deletion-button';
