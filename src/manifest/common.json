@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "version": 3,
+  "version": "1.1.0",
   "type": "APP",
   "name": {
     "ja": "年齢自動計算プラグイン",
