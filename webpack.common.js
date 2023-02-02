@@ -10,6 +10,9 @@ module.exports = {
     alias: {
       '@common': path.resolve(__dirname, 'src/common'),
     },
+    fallback: {
+      path: false,
+    },
   },
   module: {
     rules: [
