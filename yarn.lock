@@ -320,7 +320,31 @@
     ajv "^8.12.0"
     bytes "^3.1.2"
 
-"@kintone/plugin-packer@6.0.30", "@kintone/plugin-packer@^6.0.30":
+"@kintone/plugin-manifest-validator@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@kintone/plugin-manifest-validator/-/plugin-manifest-validator-8.0.1.tgz#d38dcf965160ba2e826059ee378ffeb62c515788"
+  integrity sha512-1H/my3XwA1AscODWNRMOXy2+vsI0snhs0k+PyJLIIrJ/WJNJw8sSDddqLDV3IBZiVChxmsggSe+t6kya7de8PQ==
+  dependencies:
+    ajv "^8.12.0"
+    bytes "^3.1.2"
+
+"@kintone/plugin-packer@6.0.32":
+  version "6.0.32"
+  resolved "https://registry.yarnpkg.com/@kintone/plugin-packer/-/plugin-packer-6.0.32.tgz#cb3a6bf8e1afcc1bde9c47ed50e412ab8e561a18"
+  integrity sha512-BbQnBLQjI52YXrpUn5PC431AzWoYh8PjqWKxp1dohBhel/2A/ecS+hX1AN16y242BMmw/TquhU6qOp1sGdh3Yg==
+  dependencies:
+    "@kintone/plugin-manifest-validator" "^8.0.1"
+    chokidar "^3.5.3"
+    debug "^4.3.4"
+    denodeify "^1.2.1"
+    meow "^9.0.0"
+    mkdirp "^2.1.6"
+    node-rsa "~1.1.1"
+    stream-buffers "^3.0.2"
+    yauzl "^2.10.0"
+    yazl "^2.5.1"
+
+"@kintone/plugin-packer@^6.0.30":
   version "6.0.30"
   resolved "https://registry.yarnpkg.com/@kintone/plugin-packer/-/plugin-packer-6.0.30.tgz#ce696c18ae87c68c7722544a87954aad24b4d607"
   integrity sha512-Fa55nY1QGmuq0ybU8N70a0KnT0wMxNSNmyy/qAXR6SgXvMd3otaVLnNmkHrN8CHzAHFgIqqo5AT7JbDnFbWg0A==
