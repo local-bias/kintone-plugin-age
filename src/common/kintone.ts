@@ -103,7 +103,7 @@ export const getAppFields = async (targetApp?: string | number) => {
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { properties } = await kintoneClient.app.getFormFields({ app });
+  const { properties } = await kintoneClient.app.getFormFields({ app, preview: true });
 
   return properties;
 };
@@ -136,7 +136,7 @@ export const getAppLayout = async () => {
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { layout } = await kintoneClient.app.getFormLayout({ app });
+  const { layout } = await kintoneClient.app.getFormLayout({ app, preview: true });
 
   return layout;
 };
