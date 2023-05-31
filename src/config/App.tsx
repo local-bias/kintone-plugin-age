@@ -2,12 +2,13 @@ import React, { Suspense, FC } from 'react';
 import { RecoilRoot } from 'recoil';
 import { SnackbarProvider } from 'notistack';
 import { restoreStorage } from '@/common/plugin';
-import { Footer, Form } from './components';
-import { pluginIdState, storageState } from './states';
-import { Loading } from '@/common/components/loading';
+import { Form } from './components';
+import Footer from './components/model/footer';
 import { PluginErrorBoundary } from './components/functional/error-boundary';
 import { PluginBanner, PluginContent, PluginLayout } from '@konomi-app/kintone-utility-component';
 import { URL_BANNER, URL_PROMOTION } from '@/common/statics';
+import { pluginIdState, storageState } from './states/plugin';
+import { LoaderWithLabel } from '@konomi-app/ui-react';
 
 const Component: FC<{ pluginId: string }> = ({ pluginId }) => (
   <>
@@ -19,8 +20,8 @@ const Component: FC<{ pluginId: string }> = ({ pluginId }) => (
     >
       <PluginErrorBoundary>
         <SnackbarProvider maxSnack={3}>
-          <Suspense fallback={<Loading label='設定情報を取得しています' />}>
-            <PluginLayout>
+          <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>
+            <PluginLayout singleCondition>
               {/* <Sidebar /> */}
               <PluginContent>
                 <Form />

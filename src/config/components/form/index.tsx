@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 import { CircularProgress } from '@mui/material';
 
-import { storageState } from '../../states';
+import { storageState } from '../../states/plugin';
 import ConditionAdditionButton from './condition-addition-button';
 import Condition from './condition';
 

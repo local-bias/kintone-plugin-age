@@ -5,8 +5,9 @@ import { produce } from 'immer';
 import { Properties } from '@kintone/rest-api-client/lib/client/types';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-import { dateFieldsState, inputFieldsState, storageState } from '../../../states';
+import { dateFieldsState, inputFieldsState } from '../../../states';
 import { FormControlLabel, MenuItem, Switch, TextField } from '@mui/material';
+import { storageState } from '@/config/states/plugin';
 
 type ContainerProps = { condition: kintone.plugin.Condition; index: number };
 type Props = ContainerProps & {
