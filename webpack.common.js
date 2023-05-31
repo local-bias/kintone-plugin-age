@@ -8,7 +8,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', 'json'],
     alias: {
-      '@common': path.resolve(__dirname, 'src/common'),
+      '@': path.resolve(__dirname, 'src'),
     },
     fallback: {
       path: false,

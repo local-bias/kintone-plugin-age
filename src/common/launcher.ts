@@ -1,5 +1,5 @@
-import { PLUGIN_NAME } from '@common/statics';
-import { pushPluginName } from '@common/local-storage';
+import { PLUGIN_NAME } from '@/common/statics';
+import { pushPluginName } from '@/common/local-storage';
 
 /**
  * イベント実行に必要なプロパティ情報
