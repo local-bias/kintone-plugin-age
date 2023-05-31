@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ChangeEventHandler, VFC, VFCX } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
-import produce from 'immer';
+import { produce } from 'immer';
 import { Properties } from '@kintone/rest-api-client/lib/client/types';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
