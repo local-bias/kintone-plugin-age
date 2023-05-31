@@ -106,5 +106,5 @@ dist
 # Original
 *.ppk
 dist/
-plugin/js
+plugin/**/*.js
 plugin/manifest.json
