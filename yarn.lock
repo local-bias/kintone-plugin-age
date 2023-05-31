@@ -433,6 +433,14 @@
     react "^18.2.0"
     react-dom "^18.2.0"
 
+"@konomi-app/ui-react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@konomi-app/ui-react/-/ui-react-1.1.1.tgz#1df4901c7984b7805c2cb624508e005bb77173e1"
+  dependencies:
+    "@emotion/react" "^11.11.0"
+    "@emotion/styled" "^11.11.0"
+    react "^18.2.0"
+
 "@mui/base@5.0.0-beta.3":
   version "5.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@mui/base/-/base-5.0.0-beta.3.tgz#8e2a1fe7559a097845c70459c190d6231708fa36"
