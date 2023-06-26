@@ -400,20 +400,20 @@
     lodash "^4.17.21"
     prettier "^2.8.8"
 
-"@kintone/plugin-manifest-validator@^9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@kintone/plugin-manifest-validator/-/plugin-manifest-validator-9.0.0.tgz#6383be264af5719087cd4ae16f1bc1cda57826ee"
-  integrity sha512-Ocv62PGWgpIV6qX84iOrG7B1zSUb6tMl/xq3AKsqG0euC8w+O5wwS1V/lLswwPBLaJd5PSrcNoPrBitrnfEegQ==
+"@kintone/plugin-manifest-validator@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@kintone/plugin-manifest-validator/-/plugin-manifest-validator-9.0.1.tgz#89ef26825141c69f7fc82e36e21da06861131a36"
+  integrity sha512-KJSZNwLfbMntYYPUq86M16YkDyqYDfeax2r6U90A1UECsFuHl2kKnzZA1QNFPVNpQPvF66zcwH3mWtlnXxGaJg==
   dependencies:
     ajv "^8.12.0"
     bytes "^3.1.2"
 
-"@kintone/plugin-packer@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@kintone/plugin-packer/-/plugin-packer-7.0.1.tgz#b97384fb88e3079a356bcfbd95552e45809a3f69"
-  integrity sha512-odGPOfXqkbqjVkI19UIdWiB1Xw5Uo5b4900qllmiQaAI0nRSQ2JdjElX3gI1fIdQOtccNu5cuAbIqc8yyvYUUQ==
+"@kintone/plugin-packer@7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@kintone/plugin-packer/-/plugin-packer-7.0.2.tgz#117583ee17dea0daac3900d7e63820cdbb3ec107"
+  integrity sha512-FddZlFUgbwf4MlXtCIInfFLXDylVgfjxEuY0vNOg5MNZFRxBYk+0YUdhSyha77v0CeT0eM+a4aePK54QDAMuvA==
   dependencies:
-    "@kintone/plugin-manifest-validator" "^9.0.0"
+    "@kintone/plugin-manifest-validator" "^9.0.1"
     chokidar "^3.5.3"
     debug "^4.3.4"
     denodeify "^1.2.1"
