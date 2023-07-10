@@ -157,7 +157,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-1.2.2.tgz#d58e788ee27267a14342303e1abb3d508b6d0fec"
   integrity sha512-0QBtGvaqtWi+nx6doRwDdBIzhNdZrXUppvTM4dtZZWEGTXL/XE/yJxLMGlDT1Gt+UHH5IX1n+jkXyytE/av7OA==
 
-"@emotion/styled@^11.10.6", "@emotion/styled@^11.11.0":
+"@emotion/styled@^11.11.0":
   version "11.11.0"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.11.0.tgz#26b75e1b5a1b7a629d7c0a8b708fbf5a9cdce346"
   dependencies:
@@ -470,13 +470,14 @@
     "@emotion/css" "^11.11.2"
     "@kintone/rest-api-client" "^4.0.3"
 
-"@konomi-app/kintone-utility-component@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@konomi-app/kintone-utility-component/-/kintone-utility-component-0.9.0.tgz#f4f13ab9491f40a1b79a37b46b9d2509efac6240"
+"@konomi-app/kintone-utility-component@^1.0.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@konomi-app/kintone-utility-component/-/kintone-utility-component-1.1.0.tgz#38d3a4a9cbcd49adfc023df867ec690d2de94937"
+  integrity sha512-u7ra0Rq/BilfM+JgvHwQq90s2Tm2BhSi/s9G0IWkboMYA0R1oWdwJbrSd/FmNZ+VS+tpv/LUt2ZYcoPOwKxbsQ==
   dependencies:
-    "@emotion/styled" "^11.10.6"
-    "@mui/icons-material" "^5.11.11"
-    "@mui/material" "^5.11.11"
+    "@emotion/styled" "^11.11.0"
+    "@mui/icons-material" "^5.13.7"
+    "@mui/material" "^5.13.7"
     react "^18.2.0"
     react-dom "^18.2.0"
 
@@ -507,14 +508,14 @@
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.13.7.tgz#f4d9af5fe113b80b98b2cb158263d7b8f77e61c7"
   integrity sha512-/suIo4WoeL/OyO3KUsFVpdOmKiSAr6NpWXmQ4WLSxwKrTiha1FJxM6vwAki5W/5kR9WnVLw5E8JC4oHHsutT8w==
 
-"@mui/icons-material@^5.11.11", "@mui/icons-material@^5.11.16":
+"@mui/icons-material@^5.11.16", "@mui/icons-material@^5.13.7":
   version "5.13.7"
   resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.13.7.tgz#d83532363196b49d8716987e9a2c12f55b233cc1"
   integrity sha512-zoVtkb9jYVUGfI7CobOdDBEAlpg3XESiO6cWqSDGwEma69+CBDIAwGpnO5truvQDJHBGSAfzFj3nObwxjkyA7Q==
   dependencies:
     "@babel/runtime" "^7.22.5"
 
-"@mui/material@^5.11.11", "@mui/material@^5.13.3":
+"@mui/material@^5.13.3", "@mui/material@^5.13.7":
   version "5.13.7"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.13.7.tgz#0a4cef14d2a647eb6b049557a795744ff35df755"
   integrity sha512-+n453jDDm88zZM3b5YK29nZ7gXY+s+rryH9ovDbhmfSkOlFtp+KSqbXy5cTaC/UlDqDM7sYYJGq8BmJov3v9Tg==
