@@ -483,9 +483,9 @@
     "@kintone/rest-api-client" "^4.0.3"
 
 "@konomi-app/kintone-utility-component@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@konomi-app/kintone-utility-component/-/kintone-utility-component-1.1.0.tgz#38d3a4a9cbcd49adfc023df867ec690d2de94937"
-  integrity sha512-u7ra0Rq/BilfM+JgvHwQq90s2Tm2BhSi/s9G0IWkboMYA0R1oWdwJbrSd/FmNZ+VS+tpv/LUt2ZYcoPOwKxbsQ==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@konomi-app/kintone-utility-component/-/kintone-utility-component-1.2.0.tgz#830c03cafd7d1bdcd00dcb7cfcb070fdfdd48c4d"
+  integrity sha512-a+JBThyF2gfl5v+ni1pvQrhkFEcIer4OOhqTVXAJHMha91ptiHAEGzb/8Xs8gFUrbP6LxeIdOg68bMQ6Ftxy2A==
   dependencies:
     "@emotion/styled" "^11.11.0"
     "@mui/icons-material" "^5.13.7"
@@ -3360,6 +3360,7 @@ react-transition-group@^4.4.5:
 react@18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
+  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -3539,6 +3540,7 @@ sass@^1.63.3:
 scheduler@^0.23.0:
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.23.0.tgz#ba8041afc3d30eb206a487b6b384002e4e61fdfe"
+  integrity sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==
   dependencies:
     loose-envify "^1.1.0"
 
