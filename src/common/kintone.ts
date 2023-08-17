@@ -1,5 +1,5 @@
-import { Properties } from '@kintone/rest-api-client/lib/client/types';
-import { OneOf } from '@kintone/rest-api-client/lib/KintoneFields/types/property';
+import { Properties } from '@kintone/rest-api-client/lib/src/client/types';
+import { OneOf } from '@kintone/rest-api-client/lib/src/KintoneFields/types/property';
 import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 import { Cybozu } from '../types/cybozu';
 

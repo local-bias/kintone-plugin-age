@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { Properties } from '@kintone/rest-api-client/lib/client/types';
+import { Properties } from '@kintone/rest-api-client/lib/src/client/types';
 import { getUserDefinedFields } from '@/common/kintone';
 
 const state = selector<Properties>({
