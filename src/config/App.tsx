@@ -1,12 +1,12 @@
 import React, { Suspense, FC } from 'react';
 import { RecoilRoot } from 'recoil';
 import { SnackbarProvider } from 'notistack';
-import { restoreStorage } from '@/common/plugin';
+import { restoreStorage } from '@/lib/plugin';
 import { Form } from './components';
 import Footer from './components/model/footer';
 import { PluginErrorBoundary } from './components/functional/error-boundary';
 import { PluginBanner, PluginContent, PluginLayout } from '@konomi-app/kintone-utility-component';
-import { URL_BANNER, URL_PROMOTION } from '@/common/statics';
+import { URL_BANNER, URL_PROMOTION } from '@/lib/statics';
 import { pluginIdState, storageState } from './states/plugin';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
 

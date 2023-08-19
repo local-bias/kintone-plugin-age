@@ -1,7 +1,7 @@
 import React, { FC, FCX } from 'react';
 import styled from '@emotion/styled';
 import { Alert, AlertTitle, Button } from '@mui/material';
-import { URL_INQUIRY } from '@/common/statics';
+import { URL_INQUIRY } from '@/lib/statics';
 import { ErrorBoundary } from '@sentry/react';
 
 const Component: FCX<{ error: Error; resetError: () => void }> = ({

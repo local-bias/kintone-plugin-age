@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { getSpecifiedFields } from '@/common/kintone';
+import { getSpecifiedFields } from '@/lib/kintone';
 import { appFieldsState } from '.';
 
 const state = selector({

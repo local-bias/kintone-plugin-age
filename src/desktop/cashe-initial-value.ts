@@ -1,4 +1,4 @@
-import { restoreStorage } from '@/common/plugin';
+import { restoreStorage } from '@/lib/plugin';
 
 declare const window: Window & { AGE_PLUGIN: { initialValues: string[] } };
 
