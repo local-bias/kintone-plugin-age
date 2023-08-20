@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 
 import App from './app';
 
-const main = (pluginId: string) =>
-  render(<App {...{ pluginId }} />, document.getElementById('settings'));
+const main = () => render(<App />, document.getElementById('settings'));
 
 export default main;

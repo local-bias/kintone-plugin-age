@@ -1,5 +1,6 @@
 import { PLUGIN_NAME } from '@/lib/statics';
 import { pushPluginName } from '@/lib/local-storage';
+import { PLUGIN_ID } from './global';
 
 /**
  * イベント実行に必要なプロパティ情報
@@ -18,8 +19,8 @@ class Launcher {
   /**
    * 複数の処理を、各イベントに登録することができます
    */
-  public constructor(pluginId: string) {
-    this._pluginId = pluginId;
+  public constructor() {
+    this._pluginId = PLUGIN_ID;
     try {
       pushPluginName();
     } catch (error) {}

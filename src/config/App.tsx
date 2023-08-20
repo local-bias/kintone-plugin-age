@@ -1,23 +1,16 @@
 import React, { Suspense, FC } from 'react';
 import { RecoilRoot } from 'recoil';
 import { SnackbarProvider } from 'notistack';
-import { restoreStorage } from '@/lib/plugin';
 import { Form } from './components';
 import Footer from './components/model/footer';
 import { PluginErrorBoundary } from './components/functional/error-boundary';
 import { PluginBanner, PluginContent, PluginLayout } from '@konomi-app/kintone-utility-component';
 import { URL_BANNER, URL_PROMOTION } from '@/lib/statics';
-import { pluginIdState, storageState } from './states/plugin';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
 
-const Component: FC<{ pluginId: string }> = ({ pluginId }) => (
+const Component: FC = () => (
   <>
-    <RecoilRoot
-      initializeState={({ set }) => {
-        set(pluginIdState, pluginId);
-        set(storageState, restoreStorage(pluginId));
-      }}
-    >
+    <RecoilRoot>
       <PluginErrorBoundary>
         <SnackbarProvider maxSnack={3}>
           <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>
