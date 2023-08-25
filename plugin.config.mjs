@@ -1,9 +1,10 @@
+//@ts-check
 const hp = 'https://konomi.app/';
 const commonCdn = 'https://kintone-plugin.konomi.app/common';
 const cdn = 'https://kintone-plugin.konomi.app/age';
 const localhost = 'https://127.0.0.1:2156';
 
-/** @type {import('./src/types/plugin-config').PluginConfig} */
+/** @type {import('@konomi-app/kintone-utilities').PluginConfig} */
 export default {
   manifest: {
     base: {
@@ -21,7 +22,7 @@ export default {
         zh: '将日期字段与年龄字段关联起来，在日期字段更改时自动计算年龄。',
       },
       icon: 'icon.png',
-      homepage_url: { ja: hp, en: hp },
+      homepage_url: { ja: hp, en: hp, zh: hp },
       desktop: {
         js: [`${commonCdn}/desktop.js`],
         css: [],
