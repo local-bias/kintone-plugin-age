@@ -40,7 +40,7 @@
     "react-error-boundary": "4.0.11",
     "recoil": "0.7.7",
     "terser-webpack-plugin": "5.3.9",
-    "typescript": "5.2.2",
+    "typescript": "5.3.2",
     "utility-types": "3.10.0"
   }
 }
