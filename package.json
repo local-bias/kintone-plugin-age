@@ -23,7 +23,7 @@
     "@kintone/plugin-uploader": "9.0.1",
     "@kintone/rest-api-client": "5.0.4",
     "@konomi-app/kbuild": "^3.0.0",
-    "@konomi-app/kintone-utilities": "^3.0.0",
+    "@konomi-app/kintone-utilities": "^4.0.0",
     "@konomi-app/kintone-utility-component": "^1.2.0",
     "@konomi-app/ui-react": "^1.1.1",
     "@mui/icons-material": "^5.14.6",
