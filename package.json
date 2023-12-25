@@ -21,7 +21,7 @@
     "@kintone/dts-gen": "8.0.3",
     "@kintone/plugin-packer": "8.0.3",
     "@kintone/plugin-uploader": "9.0.2",
-    "@kintone/rest-api-client": "5.0.4",
+    "@kintone/rest-api-client": "5.0.5",
     "@konomi-app/kbuild": "^3.0.0",
     "@konomi-app/kintone-utilities": "^4.0.0",
     "@konomi-app/kintone-utility-component": "^1.2.0",
