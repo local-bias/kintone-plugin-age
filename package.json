@@ -39,7 +39,7 @@
     "react-dom": "18.2.0",
     "react-error-boundary": "4.0.12",
     "recoil": "0.7.7",
-    "terser-webpack-plugin": "5.3.9",
+    "terser-webpack-plugin": "5.3.10",
     "typescript": "5.3.3",
     "utility-types": "3.10.0"
   }
