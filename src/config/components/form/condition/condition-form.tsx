@@ -1,72 +1,69 @@
-import React, { ChangeEvent, ChangeEventHandler, VFC, VFCX } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React, { ChangeEvent, FC, FCX } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import { produce } from 'immer';
-import { Properties } from '@kintone/rest-api-client/lib/src/client/types';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-import { dateFieldsState, inputFieldsState } from '../../../states';
-import { FormControlLabel, MenuItem, Switch, TextField } from '@mui/material';
+import { FormControlLabel, Switch } from '@mui/material';
 import { storageState } from '@/config/states/plugin';
+import { RecoilFieldSelect } from '@konomi-app/kintone-utilities-react';
+import { dateFieldsState, textFieldsState } from '@/config/states/kintone';
 
 type ContainerProps = { condition: Plugin.Condition; index: number };
-type Props = ContainerProps & {
-  dateFields: Properties;
-  inputFields: Properties;
-  onSrcChange: ChangeEventHandler<HTMLInputElement>;
-  onDstChange: ChangeEventHandler<HTMLInputElement>;
-  onUpdatesChange: (_: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
-};
 
-const Component: VFCX<Props> = ({
-  className,
-  condition,
-  dateFields,
-  inputFields,
-  onSrcChange,
-  onDstChange,
-  onUpdatesChange,
-}) => (
-  <div {...{ className }}>
-    <div>
-      <TextField
-        select
-        className='input'
-        label='年齢の算出元'
-        value={condition.srcFieldCode}
-        onChange={onSrcChange}
-        variant='outlined'
-      >
-        {Object.entries(dateFields).map(([code, { label }], i) => (
-          <MenuItem key={i} value={code}>
-            {`${label} (${code})`}
-          </MenuItem>
-        ))}
-      </TextField>
-      <ArrowForwardIcon className='icon' />
-      <TextField
-        select
-        className='input'
-        label='自動入力するフィールド'
-        value={condition.dstFieldCode}
-        onChange={onDstChange}
-        variant='outlined'
-      >
-        {Object.entries(inputFields).map(([code, { label }], i) => (
-          <MenuItem key={i} value={code}>
-            {`${label} (${code})`}
-          </MenuItem>
-        ))}
-      </TextField>
+const Component: FCX<ContainerProps> = ({ className, condition, index }) => {
+  const setStorage = useSetRecoilState(storageState);
+
+  const onSrcChange = (fieldCode: string) => {
+    setStorage((_, _storage = _!) =>
+      produce(_storage, (draft) => {
+        draft.conditions[index].srcFieldCode = fieldCode;
+      })
+    );
+  };
+  const onDstChange = (fieldCode: string) => {
+    setStorage((_, _storage = _!) =>
+      produce(_storage, (draft) => {
+        draft.conditions[index].dstFieldCode = fieldCode;
+      })
+    );
+  };
+  const onUpdatesChange = (_: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    setStorage((_, _storage = _!) =>
+      produce(_storage, (draft) => {
+        draft.conditions[index].updates = checked;
+      })
+    );
+  };
+
+  return (
+    <div {...{ className }}>
+      <div>
+        <RecoilFieldSelect
+          label='年齢の算出元'
+          state={dateFieldsState}
+          fieldCode={condition.srcFieldCode}
+          onChange={onSrcChange}
+        />
+        <ArrowForwardIcon className='icon' />
+        <RecoilFieldSelect
+          label='自動入力するフィールド'
+          state={textFieldsState}
+          fieldCode={condition.dstFieldCode}
+          onChange={onDstChange}
+        />
+      </div>
+      <div>
+        <FormControlLabel
+          control={
+            <Switch checked={condition.updates} onChange={onUpdatesChange} color='primary' />
+          }
+          label='レコードが上書きされる度に再計算する'
+        />
+      </div>
     </div>
-    <div>
-      <FormControlLabel
-        control={<Switch checked={condition.updates} onChange={onUpdatesChange} color='primary' />}
-        label='レコードが上書きされる度に再計算する'
-      />
-    </div>
-  </div>
-);
+  );
+};
 
 const StyledComponent = styled(Component)`
   padding: 0 16px;
@@ -84,38 +81,8 @@ const StyledComponent = styled(Component)`
   }
 `;
 
-const Container: VFC<ContainerProps> = ({ condition, index }) => {
-  const dateFields = useRecoilValue(dateFieldsState);
-  const inputFields = useRecoilValue(inputFieldsState);
-  const setStorage = useSetRecoilState(storageState);
-
-  const onSrcChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setStorage((_, _storage = _!) =>
-      produce(_storage, (draft) => {
-        draft.conditions[index].srcFieldCode = e.target.value;
-      })
-    );
-  };
-  const onDstChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setStorage((_, _storage = _!) =>
-      produce(_storage, (draft) => {
-        draft.conditions[index].dstFieldCode = e.target.value;
-      })
-    );
-  };
-  const onUpdatesChange = (_: ChangeEvent<HTMLInputElement>, checked: boolean) => {
-    setStorage((_, _storage = _!) =>
-      produce(_storage, (draft) => {
-        draft.conditions[index].updates = checked;
-      })
-    );
-  };
-
-  return (
-    <StyledComponent
-      {...{ condition, index, dateFields, inputFields, onSrcChange, onDstChange, onUpdatesChange }}
-    />
-  );
+const Container: FC<ContainerProps> = (props) => {
+  return <StyledComponent {...props} />;
 };
 
 export default Container;

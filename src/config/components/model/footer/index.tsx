@@ -12,7 +12,7 @@ import { loadingState, storageState } from '../../../states/plugin';
 import ExportButton from './export-button';
 import ImportButton from './import-button';
 import ResetButton from './reset-button';
-import { PluginFooter } from '@konomi-app/kintone-utility-component';
+import { PluginFooter } from '@konomi-app/kintone-utilities-react';
 
 type Props = {
   onSaveButtonClick: () => void;

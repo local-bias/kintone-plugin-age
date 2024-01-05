@@ -4,27 +4,36 @@ import { SnackbarProvider } from 'notistack';
 import { Form } from './components';
 import Footer from './components/model/footer';
 import { PluginErrorBoundary } from './components/functional/error-boundary';
-import { PluginBanner, PluginContent, PluginLayout } from '@konomi-app/kintone-utility-component';
+import {
+  PluginBanner,
+  PluginContent,
+  PluginLayout,
+  PluginConfigProvider,
+  Notification,
+} from '@konomi-app/kintone-utilities-react';
 import { URL_BANNER, URL_PROMOTION } from '@/lib/statics';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
+import pluginConfig from '../../plugin.config.mjs';
 
 const Component: FC = () => (
   <>
     <RecoilRoot>
-      <PluginErrorBoundary>
-        <SnackbarProvider maxSnack={3}>
-          <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>
-            <PluginLayout singleCondition>
-              {/* <Sidebar /> */}
-              <PluginContent>
-                <Form />
-              </PluginContent>
-              <PluginBanner url={URL_BANNER} />
-              <Footer />
-            </PluginLayout>
-          </Suspense>
-        </SnackbarProvider>
-      </PluginErrorBoundary>
+      <PluginConfigProvider config={pluginConfig}>
+        <PluginErrorBoundary>
+          <Notification />
+          <SnackbarProvider maxSnack={3}>
+            <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>
+              <PluginLayout singleCondition>
+                <PluginContent>
+                  <Form />
+                </PluginContent>
+                <PluginBanner url={URL_BANNER} />
+                <Footer />
+              </PluginLayout>
+            </Suspense>
+          </SnackbarProvider>
+        </PluginErrorBoundary>
+      </PluginConfigProvider>
     </RecoilRoot>
     <iframe
       title='promotion'

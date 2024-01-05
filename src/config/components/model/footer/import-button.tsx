@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, FC, memo } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { useSnackbar } from 'notistack';
 import { storageState } from '../../../states/plugin';
-import { PluginConfigImportButton } from '@konomi-app/kintone-utility-component';
+import { PluginConfigImportButton } from '@konomi-app/kintone-utilities-react';
 
 const onFileLoad = (file: File | Blob, encoding = 'UTF-8') => {
   return new Promise<ProgressEvent<FileReader>>((resolve, reject) => {
