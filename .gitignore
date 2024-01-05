@@ -103,8 +103,11 @@ dist
 # TernJS port file
 .tern-port
 
-# Original
+# Kintone Plugin files
 *.ppk
 dist/
 plugin/**/*.js
+plugin/**/*.css
 plugin/manifest.json
+plugin/config.html
+.plugin
