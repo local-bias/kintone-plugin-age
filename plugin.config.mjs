@@ -41,9 +41,9 @@ export default {
       },
     },
     dev: {
-      desktop: { js: [`${localhost}/dist/dev/desktop/index.js`] },
-      mobile: { js: [`${localhost}/dist/dev/desktop/index.js`] },
-      config: { js: [`${localhost}/dist/dev/config/index.js`] },
+      desktop: { js: [`${localhost}/dist/dev/desktop.js`] },
+      mobile: { js: [`${localhost}/dist/dev/desktop.js`] },
+      config: { js: [`${localhost}/dist/dev/config.js`] },
     },
     prod: {
       desktop: { js: [`${cdn}/desktop.js`] },
