@@ -1,10 +1,9 @@
-import { Properties } from '@kintone/rest-api-client/lib/src/client/types';
-import { OneOf } from '@kintone/rest-api-client/lib/src/KintoneFields/types/property';
-import { KintoneRestAPIClient } from '@kintone/rest-api-client';
 import { getAppId, isMobile } from '@lb-ribbit/kintone-xapp';
+import { getFormFields, getFormLayout, kintoneAPI } from '@konomi-app/kintone-utilities';
+import { GUEST_SPACE_ID } from './global';
 
 /** kintoneアプリに初期状態で存在するフィールドタイプ */
-const DEFAULT_DEFINED_FIELDS: PickType<OneOf, 'type'>[] = [
+const DEFAULT_DEFINED_FIELDS: kintoneAPI.FieldPropertyType[] = [
   'UPDATED_TIME',
   'CREATOR',
   'CREATED_TIME',
@@ -13,61 +12,8 @@ const DEFAULT_DEFINED_FIELDS: PickType<OneOf, 'type'>[] = [
   'STATUS',
 ];
 
-
-class FlexKintone extends KintoneRestAPIClient {
-  constructor(...options: ConstructorParameters<typeof KintoneRestAPIClient>) {
-    const url = kintone.api.url('/k/v1/app', true);
-    const found = url.match(/k\/guest\/([0-9]+)\//);
-
-    if (found && found.length > 1) {
-      super({
-        guestSpaceId: found[1],
-        ...(options[0] || {}),
-      });
-      return;
-    }
-
-    super(...options);
-  }
-}
-
-/** REST APIクライアント(シングルトン) */
-export const kintoneClient = new FlexKintone();
-
-
 export const getApp = (eventType?: string): typeof kintone.mobile.app | typeof kintone.app =>
   isMobile(eventType) ? kintone.mobile.app : kintone.app;
-
-export const getRecordId = () => getApp().record.getId();
-
-export const getSpaceElement = (spaceId: string) => getApp().record.getSpaceElement(spaceId);
-
-/**
- * 現在の検索条件を返却します
- * @returns 検索条件
- */
-export const getQuery = () => getApp().getQuery();
-
-/**
- * 現在の検索条件のうち、絞り込み情報の部分のみを返却します
- * @returns 検索条件の絞り込み情報
- */
-export const getQueryCondition = () => getApp().getQueryCondition();
-
-/**
- * ヘッダー部分のHTML要素を返却します
- * - デバイス毎に最適な情報を返します
- * - レコード一覧以外で実行した場合はnullが返ります
- * @returns ヘッダー部分のHTML要素
- */
-export const getHeaderSpace = (eventType: string) => {
-  if (isMobile(eventType)) {
-    kintone.mobile.app.getHeaderSpaceElement();
-  } else if (!~eventType.indexOf('index')) {
-    return kintone.app.record.getHeaderMenuSpaceElement();
-  }
-  return kintone.app.getHeaderMenuSpaceElement();
-};
 
 export const getAppFields = async (targetApp?: string | number) => {
   const app = targetApp || kintone.app.getId();
@@ -76,30 +22,36 @@ export const getAppFields = async (targetApp?: string | number) => {
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { properties } = await kintoneClient.app.getFormFields({ app, preview: true });
+  const { properties } = await getFormFields({ app, preview: true, guestSpaceId: GUEST_SPACE_ID });
 
   return properties;
 };
 
 export const getSpecifiedFields = async (
-  types: PickType<OneOf, 'type'>[],
-  _fields?: Properties
-): Promise<Properties> => {
+  types: kintoneAPI.FieldPropertyType[],
+  _fields?: kintoneAPI.FieldProperties
+): Promise<kintoneAPI.FieldProperties> => {
   const fields = _fields || (await getAppFields());
 
   const filterd = Object.entries(fields).filter(([_, value]) => types.includes(value.type));
 
-  return filterd.reduce<Properties>((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+  return filterd.reduce<kintoneAPI.FieldProperties>(
+    (acc, [key, value]) => ({ ...acc, [key]: value }),
+    {}
+  );
 };
 
-export const getUserDefinedFields = async (): Promise<Properties> => {
+export const getUserDefinedFields = async (): Promise<kintoneAPI.FieldProperties> => {
   const fields = await getAppFields();
 
   const filterd = Object.entries(fields).filter(
     ([_, value]) => !DEFAULT_DEFINED_FIELDS.includes(value.type)
   );
 
-  return filterd.reduce<Properties>((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+  return filterd.reduce<kintoneAPI.FieldProperties>(
+    (acc, [key, value]) => ({ ...acc, [key]: value }),
+    {}
+  );
 };
 
 export const getAppLayout = async () => {
@@ -109,7 +61,7 @@ export const getAppLayout = async () => {
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { layout } = await kintoneClient.app.getFormLayout({ app, preview: true });
+  const { layout } = await getFormLayout({ app, preview: true, guestSpaceId: GUEST_SPACE_ID });
 
   return layout;
 };
