@@ -31,7 +31,7 @@ const Container: VFC<ContainerProps> = ({ label }) => {
   const addCondition = () => {
     setStorage((_, _storage = _!) =>
       produce(_storage, (draft) => {
-        draft.rows.push(getNewCondition());
+        draft.conditions.push(getNewCondition());
       })
     );
   };

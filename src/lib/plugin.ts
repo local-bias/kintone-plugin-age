@@ -1,39 +1,47 @@
-/**
- * プラグインがアプリ単位で保存している設定情報を返却します
- */
-export const restoreStorage = (id: string): kintone.plugin.Storage => {
-  const config: Record<string, string> = kintone.plugin.app.getConfig(id);
+import { restoreStorage } from '@konomi-app/kintone-utilities';
+import { PLUGIN_ID } from './global';
 
-  if (!Object.keys(config).length) {
-    return createConfig();
-  }
-  return Object.entries(config).reduce<any>(
-    (acc, [key, value]) => ({ ...acc, [key]: JSON.parse(value) }),
-    {}
-  );
-};
-
-/**
- * アプリにプラグインの設定情報を保存します
- */
-export const storeStorage = (target: Record<string, any>, callback?: () => void) => {
-  const converted = Object.entries(target).reduce(
-    (acc, [key, value]) => ({ ...acc, [key]: JSON.stringify(value) }),
-    {}
-  );
-
-  kintone.plugin.app.setConfig(converted, callback);
-};
+export const getNewCondition = (): Plugin.Condition => ({
+  srcFieldCode: '',
+  dstFieldCode: '',
+  updates: false,
+});
 
 /**
  * プラグインの設定情報のひな形を返却します
  */
-export const createConfig = (): kintone.plugin.Storage => ({
-  rows: [getNewCondition()],
+export const createConfig = (): Plugin.Config => ({
+  version: 2,
+  conditions: [getNewCondition()],
 });
 
-export const getNewCondition = (): kintone.plugin.Condition => ({
-  src: '',
-  dst: '',
-  updates: false,
-});
+/**
+ * 古いバージョンの設定情報を新しいバージョンに変換します
+ * @param anyConfig 保存されている設定情報
+ * @returns 新しいバージョンの設定情報
+ */
+export const migrateConfig = (anyConfig: Plugin.AnyConfig): Plugin.Config => {
+  const { version } = anyConfig;
+  switch (version) {
+    case undefined:
+    case 1:
+      return {
+        version: 2,
+        conditions: anyConfig.rows.map(({ src, dst, updates }) => ({
+          srcFieldCode: src,
+          dstFieldCode: dst,
+          updates,
+        })),
+      };
+    default:
+      return anyConfig;
+  }
+};
+
+/**
+ * プラグインの設定情報を復元します
+ */
+export const restorePluginConfig = (): Plugin.Config => {
+  const config = restoreStorage<Plugin.AnyConfig>(PLUGIN_ID) ?? createConfig();
+  return migrateConfig(config);
+};

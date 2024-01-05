@@ -1,4 +1,4 @@
-import { restoreStorage } from '@/lib/plugin';
+import { restorePluginConfig } from '@/lib/plugin';
 
 declare const window: Window & { AGE_PLUGIN: { initialValues: string[] } };
 
@@ -9,9 +9,9 @@ const events: kintone.EventType[] = [
 ];
 
 const action: kintone.Action = async (event, pluginId) => {
-  const config = restoreStorage(pluginId);
+  const config = restorePluginConfig();
 
-  if (!config || !config.rows.length) {
+  if (!config || !config.conditions.length) {
     return event;
   }
 
@@ -19,9 +19,9 @@ const action: kintone.Action = async (event, pluginId) => {
 
   window.AGE_PLUGIN.initialValues = [];
 
-  for (const { src, dst } of config.rows) {
-    event.record[dst].disabled = true;
-    window.AGE_PLUGIN.initialValues.push(event.record[src].value);
+  for (const { srcFieldCode, dstFieldCode } of config.conditions) {
+    event.record[dstFieldCode].disabled = true;
+    window.AGE_PLUGIN.initialValues.push(event.record[srcFieldCode].value);
   }
 
   return event;

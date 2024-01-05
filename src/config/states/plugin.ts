@@ -1,10 +1,9 @@
-import { PLUGIN_ID } from '@/lib/global';
-import { restoreStorage } from '@/lib/plugin';
+import { restorePluginConfig } from '@/lib/plugin';
 import { atom } from 'recoil';
 
-export const storageState = atom<kintone.plugin.Storage | null>({
+export const storageState = atom<Plugin.Config>({
   key: 'PluginStorage',
-  default: restoreStorage(PLUGIN_ID),
+  default: restorePluginConfig(),
 });
 
 export const loadingState = atom<boolean>({

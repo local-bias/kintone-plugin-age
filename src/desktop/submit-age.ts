@@ -1,4 +1,4 @@
-import { restoreStorage } from '@/lib/plugin';
+import { restorePluginConfig } from '@/lib/plugin';
 
 declare const window: Window & { AGE_PLUGIN: { initialValues: string[] } };
 
@@ -8,36 +8,35 @@ const events: kintone.EventType[] = [
   'app.record.edit.submit',
 ];
 
-const action: kintone.Action = async (event, pluginId) => {
-  const config = restoreStorage(pluginId);
+const action: kintone.Action = async (event) => {
+  const config = restorePluginConfig();
 
-  if (!config || !config.rows.length || !window.AGE_PLUGIN) {
+  if (!config || !config.conditions.length || !window.AGE_PLUGIN) {
     return event;
   }
 
-  for (let i = 0; i < config.rows.length; i++) {
-    const { src, dst, updates } = config.rows[i];
+  config.conditions.forEach(({ srcFieldCode, dstFieldCode, updates }, i) => {
     const initialValue = window.AGE_PLUGIN.initialValues[i];
 
     if (
       !event.type.includes('record.create') &&
       !updates &&
-      (initialValue || event.record[dst].value)
+      (initialValue || event.record[dstFieldCode].value)
     ) {
-      continue;
+      return;
     }
 
-    const currentValue = event.record[src].value;
+    const currentValue = event.record[srcFieldCode].value;
 
     if (!currentValue) {
-      event.record[dst].value = '';
-      continue;
+      event.record[dstFieldCode].value = '';
+      return;
     }
 
     const age = getAge(new Date(currentValue));
 
-    event.record[dst].value = isFinite(age) ? age : NaN;
-  }
+    event.record[dstFieldCode].value = isFinite(age) ? age : NaN;
+  });
 
   return event;
 };

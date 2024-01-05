@@ -9,7 +9,7 @@ import { dateFieldsState, inputFieldsState } from '../../../states';
 import { FormControlLabel, MenuItem, Switch, TextField } from '@mui/material';
 import { storageState } from '@/config/states/plugin';
 
-type ContainerProps = { condition: kintone.plugin.Condition; index: number };
+type ContainerProps = { condition: Plugin.Condition; index: number };
 type Props = ContainerProps & {
   dateFields: Properties;
   inputFields: Properties;
@@ -33,7 +33,7 @@ const Component: VFCX<Props> = ({
         select
         className='input'
         label='年齢の算出元'
-        value={condition.src}
+        value={condition.srcFieldCode}
         onChange={onSrcChange}
         variant='outlined'
       >
@@ -48,7 +48,7 @@ const Component: VFCX<Props> = ({
         select
         className='input'
         label='自動入力するフィールド'
-        value={condition.dst}
+        value={condition.dstFieldCode}
         onChange={onDstChange}
         variant='outlined'
       >
@@ -92,21 +92,21 @@ const Container: VFC<ContainerProps> = ({ condition, index }) => {
   const onSrcChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setStorage((_, _storage = _!) =>
       produce(_storage, (draft) => {
-        draft.rows[index].src = e.target.value;
+        draft.conditions[index].srcFieldCode = e.target.value;
       })
     );
   };
   const onDstChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setStorage((_, _storage = _!) =>
       produce(_storage, (draft) => {
-        draft.rows[index].dst = e.target.value;
+        draft.conditions[index].dstFieldCode = e.target.value;
       })
     );
   };
   const onUpdatesChange = (_: ChangeEvent<HTMLInputElement>, checked: boolean) => {
     setStorage((_, _storage = _!) =>
       produce(_storage, (draft) => {
-        draft.rows[index].updates = checked;
+        draft.conditions[index].updates = checked;
       })
     );
   };

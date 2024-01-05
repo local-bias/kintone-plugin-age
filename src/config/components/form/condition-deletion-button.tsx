@@ -23,7 +23,7 @@ const Container: VFC<ContainerProps> = ({ index }) => {
   const onClick = () => {
     setStorage((_, _storage = _!) =>
       produce(_storage, (draft) => {
-        draft.rows.splice(index, 1);
+        draft.conditions.splice(index, 1);
       })
     );
   };

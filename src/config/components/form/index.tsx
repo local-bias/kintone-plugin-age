@@ -7,9 +7,7 @@ import { storageState } from '../../states/plugin';
 import ConditionAdditionButton from './condition-addition-button';
 import Condition from './condition';
 
-type Props = Readonly<{
-  storage: kintone.plugin.Storage | null;
-}>;
+type Props = Readonly<{storage: Plugin.Config;}>;
 
 const Component: VFCX<Props> = ({ className, storage }) => (
   <div {...{ className }}>
@@ -21,7 +19,7 @@ const Component: VFCX<Props> = ({ className, storage }) => (
     )}
     {!!storage && (
       <>
-        {storage.rows.map((condition, index) => (
+        {storage.conditions.map((condition, index) => (
           <Condition key={index} {...{ condition, index }} />
         ))}
         <ConditionAdditionButton label='新しい自動計算設定' />

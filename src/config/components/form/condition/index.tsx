@@ -5,7 +5,7 @@ import { Accordion, AccordionActions, AccordionDetails, AccordionSummary } from 
 import ConditionForm from './condition-form';
 import ConditionDeletionButton from '../condition-deletion-button';
 
-type ContainerProps = Readonly<{ condition: kintone.plugin.Condition; index: number }>;
+type ContainerProps = Readonly<{ condition: Plugin.Condition; index: number }>;
 type Props = ContainerProps & {
   expanded: boolean;
   onChange: () => void;
