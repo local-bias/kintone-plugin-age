@@ -1,30 +1,29 @@
-import styled from '@emotion/styled';
 import { storeStorage } from '@konomi-app/kintone-utilities';
 import SaveIcon from '@mui/icons-material/Save';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import { Button, CircularProgress } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import React, { FC, FCX, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 
+import { PluginFooter } from '@konomi-app/kintone-utilities-react';
 import { loadingState, storageState } from '../../../states/plugin';
 
 import ExportButton from './export-button';
 import ImportButton from './import-button';
 import ResetButton from './reset-button';
-import { PluginFooter } from '@konomi-app/kintone-utilities-react';
 
 type Props = {
   onSaveButtonClick: () => void;
   onBackButtonClick: () => void;
 };
 
-const Component: FCX<Props> = ({ className, onSaveButtonClick, onBackButtonClick }) => {
+const Component: FC<Props> = ({ onSaveButtonClick, onBackButtonClick }) => {
   const loading = useRecoilValue(loadingState);
 
   return (
-    <PluginFooter {...{ className }}>
-      <div>
+    <PluginFooter className='py-2'>
+      <div className='flex items-center gap-4'>
         <Button
           variant='contained'
           color='primary'
@@ -46,7 +45,7 @@ const Component: FCX<Props> = ({ className, onSaveButtonClick, onBackButtonClick
           プラグイン一覧へ戻る
         </Button>
       </div>
-      <div>
+      <div className='flex items-center gap-4'>
         <ExportButton />
         <ImportButton />
         <ResetButton />
@@ -54,12 +53,6 @@ const Component: FCX<Props> = ({ className, onSaveButtonClick, onBackButtonClick
     </PluginFooter>
   );
 };
-
-const StyledComponent = styled(Component)`
-  button {
-    margin: 8px;
-  }
-`;
 
 const Container: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -73,7 +66,7 @@ const Container: FC = () => {
         try {
           const storage = await snapshot.getPromise(storageState);
 
-          storeStorage(storage!, () => true);
+          storeStorage(storage, () => true);
           enqueueSnackbar('設定を保存しました', {
             variant: 'success',
             action: (
@@ -89,7 +82,7 @@ const Container: FC = () => {
     []
   );
 
-  return <StyledComponent {...{ onSaveButtonClick, onBackButtonClick }} />;
+  return <Component {...{ onSaveButtonClick, onBackButtonClick }} />;
 };
 
 export default Container;

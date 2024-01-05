@@ -1,9 +1,3 @@
-import React, { Suspense, FC } from 'react';
-import { RecoilRoot } from 'recoil';
-import { SnackbarProvider } from 'notistack';
-import { Form } from './components';
-import Footer from './components/model/footer';
-import { PluginErrorBoundary } from './components/functional/error-boundary';
 import {
   PluginBanner,
   PluginContent,
@@ -11,19 +5,27 @@ import {
   PluginConfigProvider,
   Notification,
 } from '@konomi-app/kintone-utilities-react';
-import { URL_BANNER, URL_PROMOTION } from '@/lib/statics';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
-import pluginConfig from '../../plugin.config.mjs';
+import { SnackbarProvider } from 'notistack';
+import React, { FC, Suspense } from 'react';
+import { RecoilRoot } from 'recoil';
+import { URL_BANNER, URL_PROMOTION } from '@/lib/static';
+import { PluginErrorBoundary } from '@/lib/components/error-boundary';
+import Footer from './components/model/footer';
+import Form from './components/model/form';
+import Sidebar from './components/model/sidebar';
+import config from '../../plugin.config.mjs';
 
 const Component: FC = () => (
-  <>
+  <Suspense fallback={<LoaderWithLabel label='画面の描画を待機しています' />}>
     <RecoilRoot>
-      <PluginConfigProvider config={pluginConfig}>
-        <PluginErrorBoundary>
+      <PluginErrorBoundary>
+        <PluginConfigProvider config={config}>
           <Notification />
-          <SnackbarProvider maxSnack={3}>
+          <SnackbarProvider maxSnack={1}>
             <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>
-              <PluginLayout singleCondition>
+              <PluginLayout>
+                <Sidebar />
                 <PluginContent>
                   <Form />
                 </PluginContent>
@@ -32,16 +34,11 @@ const Component: FC = () => (
               </PluginLayout>
             </Suspense>
           </SnackbarProvider>
-        </PluginErrorBoundary>
-      </PluginConfigProvider>
+        </PluginConfigProvider>
+      </PluginErrorBoundary>
     </RecoilRoot>
-    <iframe
-      title='promotion'
-      loading='lazy'
-      src={URL_PROMOTION}
-      style={{ border: '0', width: '100%', height: '64px' }}
-    />
-  </>
+    <iframe title='promotion' loading='lazy' src={URL_PROMOTION} className='border-0 w-full h-16' />
+  </Suspense>
 );
 
 export default Component;

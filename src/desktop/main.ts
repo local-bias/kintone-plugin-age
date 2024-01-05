@@ -28,7 +28,7 @@ manager.add(
   (event) => {
     const config = restorePluginConfig();
 
-    config.conditions.forEach(({ srcFieldCode, dstFieldCode, updates }, i) => {
+    config.conditions.forEach(({ srcFieldCode, dstFieldCode, isUpdateOnSave }, i) => {
       if (
         !srcFieldCode ||
         !dstFieldCode ||
@@ -39,7 +39,7 @@ manager.add(
       }
 
       const dstFieldValue = event.record[dstFieldCode].value as string;
-      if (dstFieldValue && !updates) {
+      if (dstFieldValue && !isUpdateOnSave) {
         return;
       }
 

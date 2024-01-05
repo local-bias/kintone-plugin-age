@@ -1,23 +1,10 @@
 import React, { ChangeEventHandler, FC, memo } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { useSnackbar } from 'notistack';
-import { storageState } from '../../../states/plugin';
+import { onFileLoad } from '@konomi-app/kintone-utilities';
 import { PluginConfigImportButton } from '@konomi-app/kintone-utilities-react';
-
-const onFileLoad = (file: File | Blob, encoding = 'UTF-8') => {
-  return new Promise<ProgressEvent<FileReader>>((resolve, reject) => {
-    try {
-      const reader = new FileReader();
-
-      reader.readAsText(file, encoding);
-
-      reader.onload = (event) => resolve(event);
-      reader.onerror = (event) => reject(event);
-    } catch (error) {
-      reject(error);
-    }
-  });
-};
+import { storageState } from '../../../states/plugin';
+import { migrateConfig } from '@/lib/plugin';
 
 const Component: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -33,7 +20,7 @@ const Component: FC = () => {
           const [file] = Array.from(files);
           const fileEvent = await onFileLoad(file);
           const text = (fileEvent.target?.result ?? '') as string;
-          set(storageState, JSON.parse(text));
+          set(storageState, migrateConfig(JSON.parse(text)));
           enqueueSnackbar('設定情報をインポートしました', { variant: 'success' });
         } catch (error) {
           enqueueSnackbar(

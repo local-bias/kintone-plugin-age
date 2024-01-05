@@ -13,7 +13,7 @@ declare namespace Plugin {
     conditions: {
       srcFieldCode: string;
       dstFieldCode: string;
-      updates: boolean;
+      isUpdateOnSave: boolean;
     }[];
   };
 

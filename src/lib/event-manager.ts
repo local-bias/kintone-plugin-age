@@ -1,5 +1,5 @@
 import { KintoneEventManager } from '@konomi-app/kintone-utilities';
-import { PLUGIN_NAME } from './statics';
+import { PLUGIN_NAME } from './static';
 
 export const manager = new KintoneEventManager({
   errorHandler: (error, props) => {

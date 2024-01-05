@@ -1,17 +1,16 @@
 //@ts-check
 const hp = 'https://konomi.app/';
 const commonCdn = 'https://kintone-plugin.konomi.app/common';
-const cdn = 'https://kintone-plugin.konomi.app/age';
 const localhost = 'https://127.0.0.1:2156';
 
-/** @type {import('@konomi-app/kintone-utilities').PluginConfig} */
+/** @type { import('@konomi-app/kintone-utilities').PluginConfig } */
 export default {
   id: 'ribbit-kintone-plugin-age',
   pluginReleasePageUrl: `https://ribbit.konomi.app/kintone-plugin/`,
   manifest: {
     base: {
       manifest_version: 1,
-      version: '2.1.2',
+      version: '3.0.0',
       type: 'APP',
       name: {
         en: 'Age Calculation Plugin',
@@ -24,15 +23,9 @@ export default {
         zh: '将日期字段与年龄字段关联起来，在日期字段更改时自动计算年龄。',
       },
       icon: 'icon.png',
-      homepage_url: { ja: hp, en: hp, zh: hp },
-      desktop: {
-        js: [`${commonCdn}/desktop.js`],
-        css: [],
-      },
-      mobile: {
-        js: [`${commonCdn}/desktop.js`],
-        css: [],
-      },
+      homepage_url: { ja: hp, en: hp },
+      desktop: { js: [`${commonCdn}/desktop.js`], css: [] },
+      mobile: { js: [`${commonCdn}/desktop.js`], css: [] },
       config: {
         html: 'config.html',
         js: [`${commonCdn}/config.js`],
@@ -41,19 +34,28 @@ export default {
       },
     },
     dev: {
-      desktop: { js: [`${localhost}/dist/dev/desktop.js`] },
-      mobile: { js: [`${localhost}/dist/dev/desktop.js`] },
-      config: { js: [`${localhost}/dist/dev/config.js`] },
+      desktop: {
+        js: [`${localhost}/dist/dev/desktop.js`],
+        css: [`${localhost}/dist/dev/desktop.css`],
+      },
+      mobile: {
+        js: [`${localhost}/dist/dev/desktop.js`],
+        css: [`${localhost}/dist/dev/desktop.css`],
+      },
+      config: {
+        js: [`${localhost}/dist/dev/config.js`],
+        css: [`${localhost}/dist/dev/config.css`],
+      },
     },
     prod: {
-      desktop: { js: [`${cdn}/desktop.js`] },
-      mobile: { js: [`${cdn}/desktop.js`] },
-      config: { js: [`${cdn}/config.js`] },
+      desktop: { js: ['desktop.js'], css: ['desktop.css'] },
+      mobile: { js: ['desktop.js'], css: ['desktop.css'] },
+      config: { js: ['config.js'], css: ['config.css'] },
     },
     standalone: {
-      desktop: { js: ['desktop.js'] },
-      mobile: { js: ['desktop.js'] },
-      config: { js: ['config.js'] },
+      desktop: { js: ['desktop.js'], css: ['desktop.css'] },
+      mobile: { js: ['desktop.js'], css: ['desktop.css'] },
+      config: { js: ['config.js'], css: ['config.css'] },
     },
   },
 };

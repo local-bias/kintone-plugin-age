@@ -1,10 +1,11 @@
 import { restoreStorage } from '@konomi-app/kintone-utilities';
+import { produce } from 'immer';
 import { PLUGIN_ID } from './global';
 
 export const getNewCondition = (): Plugin.Condition => ({
   srcFieldCode: '',
   dstFieldCode: '',
-  updates: false,
+  isUpdateOnSave: false,
 });
 
 /**
@@ -30,7 +31,7 @@ export const migrateConfig = (anyConfig: Plugin.AnyConfig): Plugin.Config => {
         conditions: anyConfig.rows.map(({ src, dst, updates }) => ({
           srcFieldCode: src,
           dstFieldCode: dst,
-          updates,
+          isUpdateOnSave: updates,
         })),
       };
     default:
@@ -44,4 +45,33 @@ export const migrateConfig = (anyConfig: Plugin.AnyConfig): Plugin.Config => {
 export const restorePluginConfig = (): Plugin.Config => {
   const config = restoreStorage<Plugin.AnyConfig>(PLUGIN_ID) ?? createConfig();
   return migrateConfig(config);
+};
+
+export const getUpdatedStorage = <T extends keyof Plugin.Condition>(
+  storage: Plugin.Config,
+  props: {
+    conditionIndex: number;
+    key: T;
+    value: Plugin.Condition[T];
+  }
+) => {
+  const { conditionIndex, key, value } = props;
+  return produce(storage, (draft) => {
+    draft.conditions[conditionIndex][key] = value;
+  });
+};
+
+export const getConditionField = <T extends keyof Plugin.Condition>(
+  storage: Plugin.Config,
+  props: {
+    conditionIndex: number;
+    key: T;
+    defaultValue: NonNullable<Plugin.Condition[T]>;
+  }
+): NonNullable<Plugin.Condition[T]> => {
+  const { conditionIndex, key, defaultValue } = props;
+  if (!storage.conditions[conditionIndex]) {
+    return defaultValue;
+  }
+  return storage.conditions[conditionIndex][key] ?? defaultValue;
 };
