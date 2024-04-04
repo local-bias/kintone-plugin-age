@@ -1,11 +1,12 @@
-//@ts-check
-const hp = 'https://konomi.app/';
-const commonCdn = 'https://kintone-plugin.konomi.app/common';
+// @ts-check
+const hp = 'https://konomi.app';
+const cdn = 'https://kintone-plugin.konomi.app';
+const key = 'age';
 const localhost = 'https://127.0.0.1:2156';
 
-/** @type { import('@konomi-app/kintone-utilities').PluginConfig } */
-export default {
-  id: 'ribbit-kintone-plugin-age',
+/** @satisfies { import('@konomi-app/kintone-utilities').PluginConfig } */
+export default /** @type { const } */ ({
+  id: `ribbit-kintone-plugin-${key}`,
   pluginReleasePageUrl: `https://ribbit.konomi.app/kintone-plugin/`,
   manifest: {
     base: {
@@ -24,12 +25,12 @@ export default {
       },
       icon: 'icon.png',
       homepage_url: { ja: hp, en: hp },
-      desktop: { js: [`${commonCdn}/desktop.js`], css: [] },
-      mobile: { js: [`${commonCdn}/desktop.js`], css: [] },
+      desktop: { js: [`${cdn}/common/desktop.js`], css: [`${cdn}/common/desktop.css`] },
+      mobile: { js: [`${cdn}/common/desktop.js`], css: [`${cdn}/common/desktop.css`] },
       config: {
         html: 'config.html',
-        js: [`${commonCdn}/config.js`],
-        css: [],
+        js: [`${cdn}/common/config.js`],
+        css: [`${cdn}/common/config.css`],
         required_params: [],
       },
     },
@@ -48,9 +49,9 @@ export default {
       },
     },
     prod: {
-      desktop: { js: ['desktop.js'], css: ['desktop.css'] },
-      mobile: { js: ['desktop.js'], css: ['desktop.css'] },
-      config: { js: ['config.js'], css: ['config.css'] },
+      desktop: { js: [`${cdn}/${key}/desktop.js`], css: [`${cdn}/${key}/desktop.css`] },
+      mobile: { js: [`${cdn}/${key}/desktop.js`], css: [`${cdn}/${key}/desktop.css`] },
+      config: { js: [`${cdn}/${key}/config.js`], css: [`${cdn}/${key}/config.css`] },
     },
     standalone: {
       desktop: { js: ['desktop.js'], css: ['desktop.css'] },
@@ -58,4 +59,4 @@ export default {
       config: { js: ['config.js'], css: ['config.css'] },
     },
   },
-};
+});
