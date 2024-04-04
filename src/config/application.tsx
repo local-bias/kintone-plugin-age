@@ -26,8 +26,10 @@ const Component: FC = () => (
             <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>
               <PluginLayout>
                 <Sidebar />
-                <PluginContent>
-                  <Form />
+                <PluginContent className='🐸'>
+                  <PluginErrorBoundary>
+                    <Form />
+                  </PluginErrorBoundary>
                 </PluginContent>
                 <PluginBanner url={URL_BANNER} />
                 <Footer />
