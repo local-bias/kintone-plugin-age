@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 import { Alert, AlertTitle, Button } from '@mui/material';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { URL_INQUIRY } from '@/lib/static';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
+import { URL_INQUIRY } from '@/lib/static';
 
 const Component: FC<FallbackProps> = ({ error, resetErrorBoundary }) => {
   const [loading, setLoading] = useState(false);

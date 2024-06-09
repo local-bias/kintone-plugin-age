@@ -15,7 +15,7 @@ manager.add(
       ) {
         return;
       }
-      //@ts-ignore
+      // @ts-ignore
       event.record[dstFieldCode].disabled = true;
     });
 
@@ -50,7 +50,7 @@ manager.add(
 
       const age = getAge(new Date(currentValue));
 
-      //@ts-ignore
+      // @ts-ignore
       event.record[dstFieldCode].value = isFinite(age) ? age : NaN;
     });
 
