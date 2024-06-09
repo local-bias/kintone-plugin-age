@@ -15,7 +15,7 @@ manager.add(
       ) {
         return;
       }
-      // @ts-ignore
+      // @ts-expect-error dstFieldCodeは文字列1行フィールド
       event.record[dstFieldCode].disabled = true;
     });
 
@@ -28,7 +28,7 @@ manager.add(
   (event) => {
     const config = restorePluginConfig();
 
-    config.conditions.forEach(({ srcFieldCode, dstFieldCode, isUpdateOnSave }, i) => {
+    config.conditions.forEach(({ srcFieldCode, dstFieldCode, isUpdateOnSave }) => {
       if (
         !srcFieldCode ||
         !dstFieldCode ||
@@ -50,7 +50,7 @@ manager.add(
 
       const age = getAge(new Date(currentValue));
 
-      // @ts-ignore
+      // @ts-expect-error dstFieldCodeは文字列1行フィールド
       event.record[dstFieldCode].value = isFinite(age) ? age : NaN;
     });
 

@@ -9,7 +9,7 @@ import {
 import SrcForm from './form-src';
 import DstForm from './form-dst';
 import DeleteButton from './condition-delete-button';
-import { getConditionPropertyState, isUpdateOnSaveState } from '@/config/states/plugin';
+import { isUpdateOnSaveState } from '@/config/states/plugin';
 
 const Component: FC = () => (
   <div className='p-4'>
