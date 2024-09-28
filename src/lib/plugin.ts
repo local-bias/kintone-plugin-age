@@ -1,8 +1,10 @@
 import { restoreStorage } from '@konomi-app/kintone-utilities';
 import { produce } from 'immer';
 import { PLUGIN_ID } from './global';
+import { nanoid } from 'nanoid';
 
 export const getNewCondition = (): Plugin.Condition => ({
+  id: nanoid(),
   srcFieldCode: '',
   dstFieldCode: '',
   isUpdateOnSave: false,
@@ -12,7 +14,7 @@ export const getNewCondition = (): Plugin.Condition => ({
  * プラグインの設定情報のひな形を返却します
  */
 export const createConfig = (): Plugin.Config => ({
-  version: 2,
+  version: 3,
   conditions: [getNewCondition()],
 });
 
@@ -26,14 +28,20 @@ export const migrateConfig = (anyConfig: Plugin.AnyConfig): Plugin.Config => {
   switch (version) {
     case undefined:
     case 1:
-      return {
+      return migrateConfig({
         version: 2,
         conditions: anyConfig.rows.map(({ src, dst, updates }) => ({
           srcFieldCode: src,
           dstFieldCode: dst,
           isUpdateOnSave: updates,
         })),
-      };
+      });
+    case 2:
+      return migrateConfig({
+        version: 3,
+        conditions: anyConfig.conditions.map((condition) => ({ id: nanoid(), ...condition })),
+      });
+    case 3:
     default:
       return anyConfig;
   }
