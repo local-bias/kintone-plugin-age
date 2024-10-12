@@ -15,12 +15,12 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@konomi-app/kintone-utilities": "^5.10.4",
-    "@konomi-app/kintone-utilities-react": "^1.19.2",
-    "@konomi-app/ui": "^2.2.4",
+    "@konomi-app/kintone-utilities": "^5.11.0",
+    "@konomi-app/kintone-utilities-react": "^1.20.1",
+    "@konomi-app/ui": "^2.3.0",
     "@konomi-app/ui-react": "^1.1.1",
-    "@mui/icons-material": "6.1.2",
-    "@mui/material": "6.1.2",
+    "@mui/icons-material": "6.1.3",
+    "@mui/material": "6.1.3",
     "immer": "^10.1.1",
     "luxon": "^3.5.0",
     "nanoid": "^5.0.7",
@@ -32,13 +32,13 @@
   },
   "devDependencies": {
     "@kintone/dts-gen": "8.0.13",
-    "@konomi-app/k2": "^1.5.0",
+    "@konomi-app/k2": "^1.7.6",
     "@types/luxon": "3.4.2",
     "@types/react": "18.3.11",
-    "@types/react-dom": "18.3.0",
+    "@types/react-dom": "18.3.1",
     "dotenv": "16.4.5",
     "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.3"
   },
   "prettier": {
     "printWidth": 100,
