@@ -1,5 +1,6 @@
 import { conditionsState, selectedConditionIdState } from '@/config/states/plugin';
 import { getNewCondition } from '@/lib/plugin';
+import { PluginCondition } from '@/schema/plugin-config';
 import { BundledSidebar } from '@konomi-app/kintone-utilities-react';
 import { useSnackbar } from 'notistack';
 import React, { FC, useCallback } from 'react';
@@ -9,7 +10,7 @@ const Sidebar: FC = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [conditions, setConditions] = useRecoilState(conditionsState);
   const selectedConditionId = useRecoilValue(selectedConditionIdState);
-  const label = useCallback((params: { condition: Plugin.Condition; index: number }) => {
+  const label = useCallback((params: { condition: PluginCondition; index: number }) => {
     const { condition, index } = params;
     return (
       <div>
@@ -21,7 +22,7 @@ const Sidebar: FC = () => {
 
   const onSelectedConditionChange = useRecoilCallback(
     ({ set }) =>
-      (condition: Plugin.Condition | null) => {
+      (condition: PluginCondition | null) => {
         if (condition === null) {
           set(selectedConditionIdState, null);
           return;
