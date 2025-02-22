@@ -1,10 +1,11 @@
-import { DefaultValue, RecoilState, atom, selector, selectorFamily } from 'recoil';
-import { getUpdatedStorage, restorePluginConfig } from '@/lib/plugin';
+import { restorePluginConfig } from '@/lib/plugin';
+import { PluginCondition, PluginConfig } from '@/schema/plugin-config';
 import { produce } from 'immer';
+import { DefaultValue, RecoilState, atom, selector, selectorFamily } from 'recoil';
 
 const PREFIX = 'plugin';
 
-export const storageState = atom<Plugin.Config>({
+export const storageState = atom<PluginConfig>({
   key: `${PREFIX}storageState`,
   default: restorePluginConfig(),
 });
@@ -14,7 +15,7 @@ export const loadingState = atom<boolean>({
   default: false,
 });
 
-export const conditionsState = selector<Plugin.Condition[]>({
+export const conditionsState = selector<PluginCondition[]>({
   key: `${PREFIX}conditionsState`,
   get: ({ get }) => {
     const storage = get(storageState);
@@ -43,7 +44,7 @@ export const selectedConditionIdState = atom<string | null>({
   default: null,
 });
 
-export const selectedConditionState = selector<Plugin.Condition>({
+export const selectedConditionState = selector<PluginCondition>({
   key: `${PREFIX}selectedConditionState`,
   get: ({ get }) => {
     const conditions = get(conditionsState);
@@ -67,8 +68,8 @@ export const selectedConditionState = selector<Plugin.Condition>({
 });
 
 const conditionPropertyState = selectorFamily<
-  Plugin.Condition[keyof Plugin.Condition],
-  keyof Plugin.Condition
+  PluginCondition[keyof PluginCondition],
+  keyof PluginCondition
 >({
   key: `${PREFIX}conditionPropertyState`,
   get:
@@ -87,8 +88,8 @@ const conditionPropertyState = selectorFamily<
     },
 });
 
-export const getConditionPropertyState = <T extends keyof Plugin.Condition>(property: T) =>
-  conditionPropertyState(property) as unknown as RecoilState<Plugin.Condition[T]>;
+export const getConditionPropertyState = <T extends keyof PluginCondition>(property: T) =>
+  conditionPropertyState(property) as unknown as RecoilState<PluginCondition[T]>;
 
 export const srcFieldCodeState = getConditionPropertyState('srcFieldCode');
 export const dstFieldCodeState = getConditionPropertyState('dstFieldCode');
